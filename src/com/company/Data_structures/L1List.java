@@ -1,111 +1,132 @@
 package com.company.Data_structures;
 
-public class L1List<T> {
-    private final static int DEFSIZE = 16;
-    private Object[] array; //Массив элементов.
-    private int[] next; //Массив ссылок.
-    private int nilList; //"Нил" списка.
-    private int nilFree; //"Нил" свободного места.
-    private int before; //Индекс элемента до указателя.
-    private int after; //Индекс элемента после указателя.
-
-    public L1List(int capacity) {
-        array = new Object[capacity];
-        next = new int[capacity + 2];
-
-        nilList = capacity;
-        nilFree = capacity + 1;
-
-        link(nilList, nilList);
-        link(nilFree, 0);
-        for (int i = 0; i < capacity - 1; i++)
-            link(i, i + 1);
-        link(capacity - 1, nilFree);
-
-        before = after = nilList;
-    }
+public class L1List<T>{
+    private Node<T> first, last; //Ссылки на первый и последний узлы.
+    private int size;
 
     public L1List(){
-        this(DEFSIZE);
+        first = last = null;
+        size = 0;
     }
 
-    //Связать два элемента, заданные индексами.
-    private void link(int first, int second) {
-        next[first] = second;
+    private void bind_Node(Node<T> node1, Node<T> node2) {};
+
+
+    public void append(Node<T> node){
+        node.next = null;
+
+        if(first == null) //Первый элемент.
+            first = node;
+
+        if(last != null)
+            last.next = node;
+
+        last = node;
+        size++;
     }
 
-    //Захватить место.
-    private int mallocIndex() {
-        int index = next[nilFree];
-        link(nilFree, next[index]);
+    public void insert(Node<T> node, int location){
+        // берем предыдущий элемент
+        Node<T> node_before_index = find_by_index(location - 1);
+        Node<T> node_for_index;
+
+        if (location == 0){
+            node.next = first;
+            first = node;
+            size++;
+        }
+        // если предыдущий элемент существует или он не являлся последним
+        else if (node_before_index != null && node_before_index != last){
+            node_for_index = node_before_index.next;
+            node_before_index.next = node;
+            node.next = node_for_index;
+            size++;
+        }
+    }
+
+    public void remove(int location){
+        // берем предыдущий элемент
+        Node<T> node_before_index = find_by_index(location - 1);
+        Node<T> node_for_index = null;
+
+        if (location == 0){
+            first = first.next;
+            size--;
+        }
+        else if (location == size - 1){
+            node_before_index.next = null;
+            last = node_before_index;
+            size--;
+        }
+        else if (node_before_index != null){
+            node_for_index = node_before_index.next;
+            node_before_index.next = node_for_index.next;
+            size--;
+        }
+    }
+
+    public Node<T> find_by_index(int index){
+        Node<T> result = null;
+
+        if (first == null || index >= size || index < 0){
+            return result;
+        }
+        if (index == size - 1){
+            return last;
+        }
+
+        int n = 0;
+        Node<T> node = first;
+        do{
+            if (n == index){
+                result = node;
+                break;
+            }
+            node = node.next;
+            n++;
+        }
+        while (node.next != null);
+
+        return result;
+    }
+
+    public int find(Node<T> node){
+        Node<T> original = node;
+
+        int index = -1;
+        if (first == null){
+            return index;
+        }
+        if (last == node){
+            return size -1;
+        }
+
+        node = first;
+        int n = 0;
+        do {
+            if (node == original){
+                index = n;
+                break;
+            }
+            node = node.next;
+            n++;
+        }
+        while (node != null);
 
         return index;
     }
 
-    //Освободить место.
-    private void freeIndex(int index) {
-        link(index, next[nilFree]);
-        link(nilFree, index);
-    }
-
-    //Пуст ли список.
-    public boolean empty() {
-        return next[nilList] == nilList;
-    }
-
-    //Сделать список пустым.
-    public void clear() {
-        try {
-            toFront();
-            while (true)
-                erase();
-        } catch(Exception e) {;}
-    }
-
-    //Передвинуть указатель в начало списка.
-    public void toFront() {
-        before = nilList;
-        after = next[nilList];
-    }
-
-    //Указатель в конце списка?
-    public boolean end() {
-        return after == nilList;
-    }
-
-    //Передвинуть указатель вперед.
-    public void forward() throws Exception {
-        if(after == nilList)
-            throw new Exception();
-
-        before = after;
-        after = next[after];
-    }
-
-    //Получить число за указателем.
-    public T after() throws Exception {
-        return (T)array[after];
-    }
-
-    //Добавить число за указателем.
-    public void insert(T val) throws Exception {
-        int index = mallocIndex();
-
-        link(before, index);
-        link(index, after);
-        after = index;
-        array[index] = val;
-    }
-
-    //Удалить число за указателем.
-    public T erase() throws Exception {
-        T val = (T)array[after];
-        int index = after;
-
-        after = next[index];
-        link(before, after);
-        freeIndex(index);
-
-        return val;
+    public String toString() {
+        String result = "[";
+        Node<T> node = first;
+        do {
+            result += node.toString();
+            if (node.next != null){
+                result += ", ";
+            }
+            node = node.next;
+        }
+        while (node != null);
+        return result + "]";
     }
 }
