@@ -14,10 +14,15 @@ public class Main {
         String command = in.nextLine();
         String[] list_command;
         int n;
+        String name = "";
         while (!command.equals("*")){
             list_command = command.split("[ +]+");
             if (list_command[0].equals("Run")){
-                l1List.insert(list_command[1]);
+                for (int i = 1; i < list_command.length; i++){
+                    name += (list_command[i] + " ");
+                }
+                l1List.insert(name);
+                name = "";
             }
             else if (list_command[0].equals("Alt")){
                 if (list_command[1].equals("Delete")){
