@@ -9,7 +9,9 @@ public class L1List<T>{
         size = 0;
     }
 
-    private void bind_Node(Node<T> node1, Node<T> node2) {};
+    public int getSize(){
+        return size;
+    }
 
 
     public void append(Node<T> node){
@@ -33,6 +35,17 @@ public class L1List<T>{
         if (location == 0){
             node.next = first;
             first = node;
+            size++;
+        }
+        else if (location == size){
+            if (last == null){
+                first.next = node;
+                last = node;
+            }
+            else{
+                last.next = node;
+                last = node;
+            }
             size++;
         }
         // если предыдущий элемент существует или он не являлся последним
@@ -71,10 +84,12 @@ public class L1List<T>{
         if (first == null || index >= size || index < 0){
             return result;
         }
-        if (index == size - 1){
+        else if (index == size - 1){
+            if (size == 1){
+                return first;
+            }
             return last;
         }
-
         int n = 0;
         Node<T> node = first;
         do{
