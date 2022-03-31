@@ -1,44 +1,40 @@
-package com.company.Task29;
+package com.company.Task42;
 
-import com.company.Data_structures.L1List;
-
+import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws Exception {
         Scanner in = new Scanner(System.in);
 
-        L1List<String> l1List = new L1List<>();
+        LinkedList<String> l1List = new LinkedList<>();
         System.out.println("Знак * остановка ввода команд");
 
         String command = in.nextLine();
         String[] list_command;
-        int n;
         String name = "";
+        int window_number = -1;
         while (!command.equals("*")){
             list_command = command.split("[ +]+");
-            if (list_command[0].equals("Run")){
+            if (list_command[0].equalsIgnoreCase("Run")){
                 for (int i = 1; i < list_command.length; i++){
                     name += (list_command[i] + " ");
                 }
-                l1List.insert(name);
+                l1List.add(name);
+                window_number=l1List.size() - 1;
                 name = "";
             }
-            else if (list_command[0].equals("Alt")){
-                if (list_command[1].equals("Delete")){
-                    l1List.erase();
+            else if (list_command[0].equalsIgnoreCase("alt")){
+                int n;
+                if (list_command[1].equalsIgnoreCase("delete")){
+                    l1List.remove(window_number);
                 }
-                else if(list_command[1].equals("Tab")){
+                else if(list_command[1].equalsIgnoreCase("tab")){
                     n = (list_command.length) - 1;
-                    for (int i = 0; i < n; i++){
-                        l1List.forward();
-                        if (l1List.end()){
-                            l1List.toFront();
-                        }
-                    }
+                    window_number = (window_number + n) % (l1List.size());
                 }
             }
-            System.out.println(l1List.after());
+            System.out.println(l1List.get(window_number));
             command = in.nextLine();
         }
     }
