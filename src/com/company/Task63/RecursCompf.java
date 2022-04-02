@@ -3,6 +3,7 @@ package com.company.Task63;
 public class RecursCompf {
     private static final int DEFSIZE = 256;
     private char[] str;
+    private boolean was_number = false;
     private int index; //Число обработанных символов.
 
     public RecursCompf() {
@@ -12,62 +13,73 @@ public class RecursCompf {
     private void compileF() {
         compileT();
 
-        if (index >= str.length)
-            return;
 
-        if (str[index] == '+') {
-            index++;
-            compileF();
-            System.out.print("+ ");
-            return;
+        while (true) {
+
+            if (index >= str.length)
+                return;
+
+            if (str[index] == '+' && !was_number) {
+                index++;
+                compileT();
+                System.out.print("+ ");
+            } else if (str[index] == '-' && !was_number) {
+                index++;
+                compileT();
+                System.out.print("- ");
+            } else {
+                return;
+            }
         }
 
-        if (str[index] == '-') {
-            index++;
-            compileF();
-            System.out.print("- ");
-        }
 
     }
 
     private void compileT() {
         compileM();
 
-        if (index >= str.length)
-            return;
+        while (true) {
+            if (index >= str.length)
+                return;
 
-        if (str[index] == '*') {
-            index++;
-            compileT();
-            System.out.print("* ");
-            return;
-        }
-
-        if (str[index] == '/') {
-            index++;
-            compileT();
-            System.out.print("/ ");
+            if (str[index] == '*') {
+                index++;
+                compileM();
+                System.out.print("* ");
+            } else if (str[index] == '/') {
+                index++;
+                compileM();
+                System.out.print("/ ");
+            } else {
+                return;
+            }
         }
     }
 
     private void compileM() {
-        if (str[index] == '(') {
+        if (str[index] == '(' ||
+            str[index] == '[' ||
+            str[index] == '{')
+        {
             index++;
             compileF();
             index++;
         } else
             compileV();
+        was_number = false;
     }
 
     private void compileV() {
         while (index < str.length &&
-                str[index] != '+' &&
-                str[index] != '-' &&
+                (str[index] != '+' || !was_number) &&
+                (str[index] != '-' || !was_number) &&
                 str[index] != '*' &&
                 str[index] != '/' &&
                 str[index] != '(' &&
-                str[index] != ')') {
+                str[index] != ')')
+        {
             System.out.print("" + str[index++] + "");
+            was_number = true;
         }
         System.out.print(" ");
     }
