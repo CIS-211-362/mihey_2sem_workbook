@@ -75,12 +75,9 @@ public class RecursCompf {
                 (str[index] != '-' || !was_number) &&
                 str[index] != '*' &&
                 str[index] != '/' &&
-                str[index] != '(' &&
-                str[index] != ')' &&
-                str[index] != '[' &&
-                str[index] != ']' &&
-                str[index] != '{' &&
-                str[index] != '}')
+                (str[index] != '(' && str[index] != ')') &&
+                (str[index] != '[' && str[index] != ']') &&
+                (str[index] != '{' && str[index] != '}'))
         {
             System.out.print("" + str[index++] + "");
             was_number = true;
