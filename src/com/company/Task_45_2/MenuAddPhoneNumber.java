@@ -1,8 +1,9 @@
 package com.company.Task_45_2;
 
-public class MenuSearchPhoneNumber extends AbstractMenu {
 
-    public MenuSearchPhoneNumber(String title, String description, AbstractMenu previousMenu) {
+public class MenuAddPhoneNumber extends AbstractMenu{
+
+    public MenuAddPhoneNumber(String title, String description, AbstractMenu previousMenu) {
         super(title, description, previousMenu);
 
         setCommand(new String[]{
@@ -16,7 +17,9 @@ public class MenuSearchPhoneNumber extends AbstractMenu {
                 program.setCurrentMenu(previousMenu);
                 break;
             default:
-                program.getPhoneNumbers().search(command);
+                String fio = command.split(":")[0];
+                String phoneNumber = command.split(":")[1];
+                program.getPhoneNumbers().addPhoneNumber(fio, phoneNumber);
         }
     }
 }

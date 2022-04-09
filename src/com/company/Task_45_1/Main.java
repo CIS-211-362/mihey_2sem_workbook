@@ -7,7 +7,7 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        FileReader fr = new FileReader("src/com/company/Task_45/text.txt");
+        FileReader fr = new FileReader("src/com/company/Task_45_1/text.txt");
         Scanner in = new Scanner(fr);
 
         Map<String, Integer> word_count = new LinkedHashMap<>();
@@ -33,7 +33,7 @@ public class Main {
             return s1num.compareTo(s2num);
         });
 
-        FileWriter writer = new FileWriter("src/com/company/Task_45/answer.txt", false);
+        FileWriter writer = new FileWriter("src/com/company/Task_45_1/answer.txt", false);
         for(String word : word_for_file){
             writer.write(word + "\n");
         }

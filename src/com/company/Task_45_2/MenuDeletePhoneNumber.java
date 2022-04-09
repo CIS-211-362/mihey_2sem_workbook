@@ -2,8 +2,8 @@ package com.company.Task_45_2;
 
 public class MenuDeletePhoneNumber extends AbstractMenu{
 
-    public MenuDeletePhoneNumber(String title, AbstractMenu previousMenu) {
-        super(title, previousMenu);
+    public MenuDeletePhoneNumber(String title, String description, AbstractMenu previousMenu) {
+        super(title, description, previousMenu);
 
         setCommand(new String[]{
                 "1. exit",

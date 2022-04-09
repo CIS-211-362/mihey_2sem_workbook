@@ -20,7 +20,7 @@ public class Program {
         return phoneNumbers;
     }
 
-    public void giveCommand(String command){
+    public void giveCommand(String command) throws IOException {
         current_menu.giveCommand(command, this);
         current_menu.showCommand();
     }

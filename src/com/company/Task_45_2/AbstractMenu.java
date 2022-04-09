@@ -1,8 +1,11 @@
 package com.company.Task_45_2;
 
 
+import java.io.IOException;
+
 public abstract class AbstractMenu {
     String title = "Abstract";
+    String description = "";
     String[] commands = new String[0];
     AbstractMenu previousMenu;
 
@@ -15,12 +18,17 @@ public abstract class AbstractMenu {
         this.previousMenu = previousMenu;
     }
 
+    public AbstractMenu(String title, String description, AbstractMenu previousMenu){
+        this.title = title;
+        this.previousMenu = previousMenu;
+        this.description = description;
+    }
+
     public void setCommand(String[] commands){
         this.commands = commands;
     }
 
-    public void giveCommand(String command, Program program){
-        System.out.println("wefew");
+    public void giveCommand(String command, Program program) throws IOException {
     }
 
     public void showMenu(){
@@ -36,7 +44,9 @@ public abstract class AbstractMenu {
     }
 
     public void showCommand(){
-        System.out.println();
+        if (!description.isEmpty()){
+            System.out.println(description);
+        }
         for(String command : commands){
             System.out.println(command);
         }
