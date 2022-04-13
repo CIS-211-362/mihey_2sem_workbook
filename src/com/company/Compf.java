@@ -1,11 +1,14 @@
 package com.company;
 
+import java.util.Collections;
 import java.util.Stack;
 
 
 //Стековый компилятор формул.
 public class Compf extends Stack<Character> {
     //Типы символов (скобки, знаки операций, иное).
+    private final char ignoreChar = 'b';
+    private Stack<Character> stackAnother = new Stack<>();
     protected final static int
             SYM_LEFT = 0,
             SYM_RIGHT = 1,
@@ -35,7 +38,10 @@ public class Compf extends Stack<Character> {
                 break;
             case SYM_RIGHT:
                 processSuspendedSymbols(c);
-                pop(); //?!
+                if (!stackAnother.empty()) {
+                    System.out.print(stackAnother.pop());
+                }
+                pop();
                 break;
             case SYM_OPER:
                 processSuspendedSymbols(c);
@@ -48,9 +54,23 @@ public class Compf extends Stack<Character> {
         }
     }
 
+
     private void processSuspendedSymbols(char c) {
-        while (precedes(peek(), c))
+        while (precedes(peek(), c)) {
+            if (peek().equals('*') | (peek().equals('/') && stackAnother.peek().equals(ignoreChar)) && stackAnother.contains(ignoreChar)) {
+                pop();
+                stackAnother.remove(stackAnother.indexOf(ignoreChar));
+                continue;
+            }
+
+            Collections.reverse(stackAnother);
+            if (peek().equals('*') || peek().equals('+')) {
+                Collections.sort(stackAnother, Collections.reverseOrder());
+            }
+
+            while (!stackAnother.empty()) System.out.print(stackAnother.pop() + " ");
             nextOper(pop());
+        }
     }
 
     private int priority(char c) {
@@ -80,7 +100,7 @@ public class Compf extends Stack<Character> {
     }
 
     protected void nextOther(char c) {
-        System.out.print("" + c + "");
+        stackAnother.push(c);
     }
 
     public void compile(char[] str) {
