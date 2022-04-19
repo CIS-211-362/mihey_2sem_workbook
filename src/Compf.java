@@ -29,9 +29,6 @@ public class Compf extends Stack<Character> {
                 push(c);
                 break;
             case SYM_RIGHT:
-                processSuspendedSymbols(c);
-                pop();
-                break;
             case SYM_OPER:
                 processSuspendedSymbols(c);
                 push(c);

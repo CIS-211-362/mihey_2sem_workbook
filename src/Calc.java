@@ -71,9 +71,18 @@ public class Calc extends Compf{
             case '*':
                 s.push(first*second);
                 break;
-            case'/':
+            case '/':
                 s.push(first/second);
                 break;
+            case ']':
+                s.push(first);
+                s.push(second*2);
+                pop();
+                break;
+        }
+        System.out.println(peek());
+        if (symType(peek()) == SYM_RIGHT){
+            pop();
         }
     }
 
