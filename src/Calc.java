@@ -59,6 +59,20 @@ public class Calc extends Compf{
 
     @Override
     protected void nextOper(char c){
+//        System.out.println(s);
+//        System.out.println(this);
+//        System.out.println("" + c);
+
+        if (symType(c) == SYM_RIGHT){
+//            System.out.println(1);
+            if (c == ']'){
+//                System.out.println(2);
+                s.push(s.pop()*2);
+            }
+//            System.out.println(3);
+            return;
+        }
+
         int second = s.pop();
         int first = s.pop();
         switch(c){
@@ -75,15 +89,16 @@ public class Calc extends Compf{
                 s.push(first/second);
                 break;
             case ']':
-                s.push(first);
-                s.push(second*2);
-                pop();
+                s.push(first/second);
                 break;
         }
-        System.out.println(peek());
-        if (symType(peek()) == SYM_RIGHT){
-            pop();
-        }
+//        System.out.println(s);
+
+//        if (peek() == '['){
+//            s.push(s.pop()*2);
+//        }
+//        System.out.println(s);
+//        System.out.println();
     }
 
     @Override
