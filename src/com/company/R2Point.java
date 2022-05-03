@@ -43,4 +43,12 @@ class R2Point{
         double s = area(a, b, this);
         return s < 0.0 || (s == 0.0 && !inside(a, b));
     }
+
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
+    }
 }

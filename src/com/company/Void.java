@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.ArrayList;
+
 //Класс "Нульугольник", реализующий интерфейс фигуры.
 class Void implements Figure{
     public double perimeter(){
@@ -10,7 +12,12 @@ class Void implements Figure{
         return 0.0;
     }
 
-    public Figure add(R2Point p){
+    public Figure addP(R2Point p){
         return new Point(p);
+    }
+
+    @Override
+    public ArrayList<R2Point> getAllPoints() {
+        return new ArrayList<>();
     }
 }

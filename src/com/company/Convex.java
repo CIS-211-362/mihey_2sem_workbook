@@ -8,8 +8,8 @@ class Convex{
         fig = new Void();
     }
 
-    public void add(R2Point p){
-        fig = fig.add(p);
+    public void addP(R2Point p){
+        fig = fig.addP(p);
     }
 
     public double area(){
@@ -18,5 +18,9 @@ class Convex{
 
     public double perimeter(){
         return fig.perimeter();
+    }
+
+    public java.util.ArrayList<R2Point> getAllPoints(){
+        return fig.getAllPoints();
     }
 }

@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.ArrayList;
+
 //Класс "Двуугольник", реализующий интерфейс фигуры.
 class Segment implements Figure{
     private R2Point p, q;
@@ -17,7 +19,7 @@ class Segment implements Figure{
         return 0.0;
     }
 
-    public Figure add(R2Point r){
+    public Figure addP(R2Point r){
         if(R2Point.isTriangle(p, q, r))
             return new Polygon(p, q, r);
 
@@ -28,5 +30,13 @@ class Segment implements Figure{
             p = r;
 
         return this;
+    }
+
+    @Override
+    public ArrayList<R2Point> getAllPoints() {
+        ArrayList<R2Point> points = new ArrayList<>();
+        points.add(p);
+        points.add(q);
+        return points;
     }
 }

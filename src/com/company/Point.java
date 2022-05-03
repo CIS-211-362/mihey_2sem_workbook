@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.ArrayList;
+
 //Класс "Одноугольник", реализующий интерфейс фигуры.
 class Point implements Figure{
     private R2Point p;
@@ -16,10 +18,17 @@ class Point implements Figure{
         return 0.0;
     }
 
-    public Figure add(R2Point q){
+    public Figure addP(R2Point q){
         if(!R2Point.equal(p, q))
             return new Segment(p, q);
         else
             return this;
+    }
+
+    @Override
+    public ArrayList<R2Point> getAllPoints() {
+        ArrayList<R2Point> points = new ArrayList<>();
+        points.add(p);
+        return points;
     }
 }
