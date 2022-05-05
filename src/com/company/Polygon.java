@@ -1,4 +1,5 @@
 package com.company;
+
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 
@@ -8,6 +9,7 @@ class Polygon extends ArrayDeque<R2Point> implements Figure{
     private double s, p;
 
     public Polygon(R2Point a, R2Point b, R2Point c){
+        addFirst(b);
 
         if (b.light(a, c)){
             addFirst(a);
@@ -59,15 +61,14 @@ class Polygon extends ArrayDeque<R2Point> implements Figure{
             addLast(x);
 
             //Завершаем обработку добавляемой точки.
+            assert peekFirst() != null;
             p += R2Point.dist(peekLast(), t) + R2Point.dist(t, peekFirst());
             addFirst(t);
         }
 
         return this;
     }
-
-    @Override
-    public ArrayList<R2Point> getAllPoints() {
-        return new ArrayList<>(this);
+    public ArrayList<R2Point> getAllPoints(){
+        return new ArrayList<R2Point>(this);
     }
 }

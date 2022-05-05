@@ -9,6 +9,7 @@ class Convex{
     }
 
     public void addP(R2Point p){
+
         fig = fig.addP(p);
     }
 

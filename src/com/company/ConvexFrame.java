@@ -7,9 +7,10 @@ import java.util.ArrayList;
 public class ConvexFrame extends JFrame {
     public static final int width = 800;
     public static final int height = 800;
-    private ArrayList<R2Point> points = new ArrayList<>();
+    private final Convex convex;
 
-    ConvexFrame() {
+    ConvexFrame(Convex convex) {
+        this.convex = convex;
         start();
     }
 
@@ -30,6 +31,8 @@ public class ConvexFrame extends JFrame {
         g.drawLine(0, height/2, 0, -height/2);
         g.setColor(Color.RED);
 
+        ArrayList<R2Point> points = convex.getAllPoints();
+        System.out.println(points.size());
         if (points.size() == 0) {return;}
 
         for (int i = 0; i < points.size(); i++) {
@@ -38,24 +41,13 @@ public class ConvexFrame extends JFrame {
                 j = 0;
             }
 
-
             R2Point point1 = points.get(i);
-            g.fillOval((int) point1.getX() - 5, (int) point1.getY() - 5, 10, 10);
-            if (points.size() < 2) {
-                break;
-            }
-
             R2Point point2 = points.get(j);
+            g.fillOval((int) point1.getX() - 5, (int) point1.getY() - 5, 10, 10);
             g.drawLine((int) point1.getX(), (int) point1.getY(),
                        (int) point2.getX(), (int) point2.getY());
 
         }
     }
 
-    public void updPaint(Convex convex) {
-        this.points = convex.getAllPoints();
-
-        this.repaint();
-
-    }
 }
