@@ -19,7 +19,7 @@ class Point implements Figure{
     }
 
     public Figure addP(R2Point q){
-        if(!R2Point.equal(p, q))
+        if(!R2Point.equals(p, q))
             return new Segment(p, q);
         else
             return this;

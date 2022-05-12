@@ -32,7 +32,6 @@ public class ConvexFrame extends JFrame {
         g.setColor(Color.RED);
 
         ArrayList<R2Point> points = convex.getAllPoints();
-        System.out.println(points.size());
         if (points.size() == 0) {return;}
 
         for (int i = 0; i < points.size(); i++) {

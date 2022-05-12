@@ -1,42 +1,49 @@
 package com.company;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 //Тест для выпуклой оболочки.
 class ConvexTest {
-    public static void main(String[] args){
-//        randomTest();
-        writeTest();
-    }
-
-    static void randomTest() {
+    public static void main(String[] args) throws IOException {
+        FileWriter fileWriter = new FileWriter("points.txt");
         Convex convex = new Convex();
         ConvexFrame frame = new ConvexFrame(convex);
+//        randomTest(fileWriter, convex, frame);
+        writeTest(fileWriter, convex, frame);
+        fileWriter.close();
+//        System.exit(0);
+//        frame.disable();
+    }
+
+    static void randomTest(FileWriter fileWriter, Convex convex, ConvexFrame frame) throws IOException {
         for (int i = 0; i < 5; i++) {
             System.out.println('f');
             int x = (int) (Math.random() * 700) - 350;
             int y = (int) (Math.random() * 700) - 350;
             convex.addP(new R2Point(x, y));
-            System.out.println(convex.getAllPoints().size());
+            fileWriter.write("" + x + ", " + y + '\n');
             frame.repaint();
         }
     }
 
-    static void writeTest() {
+    static void writeTest(FileWriter fileWriter, Convex convex, ConvexFrame frame) throws IOException {
         Scanner in = new Scanner(System.in);
-        Convex convex = new Convex();
-        ConvexFrame frame = new ConvexFrame(convex);
-
-
-        while (true) {
-            System.out.println("x -> ");
-            double x = in.nextDouble();
-            System.out.println("y -> ");
-            double y = in.nextDouble();
-
-            convex.addP(new R2Point(x, y));
-            frame.repaint();
-            System.out.println("S = " + convex.area() + ", P = " + convex.perimeter());
+        try{
+            while (true) {
+                System.out.println("x -> ");
+                double x = in.nextDouble();
+                System.out.println("y -> ");
+                double y = in.nextDouble();
+                convex.addP(new R2Point(x, y));
+                fileWriter.write("" + x + ", " + y + '\n');
+                frame.repaint();
+                System.out.println("S = " + convex.area() + ", P = " + convex.perimeter());
+            }
+        } catch (Exception e) {
+//            e.printStackTrace();
         }
+
     }
 }

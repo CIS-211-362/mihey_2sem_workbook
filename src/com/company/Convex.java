@@ -1,5 +1,8 @@
 package com.company;
 
+import java.io.FileWriter;
+import java.io.IOException;
+
 //Класс "Выпуклая оболочка".
 class Convex{
     private Figure fig;
@@ -9,7 +12,6 @@ class Convex{
     }
 
     public void addP(R2Point p){
-
         fig = fig.addP(p);
     }
 

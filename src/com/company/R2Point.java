@@ -27,7 +27,7 @@ class R2Point{
         return 0.5*((a.x - c.x)*(b.y - c.y) - (a.y - c.y)*(b.x - c.x));
     }
 
-    public static boolean equal(R2Point a, R2Point b){
+    public static boolean equals(R2Point a, R2Point b){
         return a.x == b.x && a.y == b.y;
     }
 
