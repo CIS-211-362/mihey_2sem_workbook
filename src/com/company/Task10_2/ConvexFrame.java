@@ -1,4 +1,6 @@
-package com.company;
+package com.company.Task10_2;
+
+import com.company.Task10_2.Convex;
 
 import javax.swing.*;
 import java.awt.*;

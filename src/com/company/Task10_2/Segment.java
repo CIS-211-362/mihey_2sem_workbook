@@ -1,9 +1,13 @@
-package com.company;
+package com.company.Task10_2;
+
+import com.company.Task10_2.Figure;
+import com.company.Task10_2.Polygon;
+import com.company.Task10_2.R2Point;
 
 import java.util.ArrayList;
 
 //Класс "Двуугольник", реализующий интерфейс фигуры.
-class Segment implements Figure{
+class Segment implements Figure {
     private R2Point p, q;
 
     public Segment(R2Point p, R2Point q){

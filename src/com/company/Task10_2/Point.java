@@ -1,9 +1,10 @@
-package com.company;
+package com.company.Task10_2;
+
 
 import java.util.ArrayList;
 
 //Класс "Одноугольник", реализующий интерфейс фигуры.
-class Point implements Figure{
+class Point implements Figure {
     private R2Point p;
 
     public Point(R2Point p){

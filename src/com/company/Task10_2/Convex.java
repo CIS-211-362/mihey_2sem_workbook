@@ -1,7 +1,4 @@
-package com.company;
-
-import java.io.FileWriter;
-import java.io.IOException;
+package com.company.Task10_2;
 
 //Класс "Выпуклая оболочка".
 class Convex{

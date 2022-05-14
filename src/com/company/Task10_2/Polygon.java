@@ -1,11 +1,12 @@
-package com.company;
+package com.company.Task10_2;
+
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 
 
 //Класс "Многоугольник", реализующий интерфейс фигуры.
-class Polygon extends ArrayDeque<R2Point> implements Figure{
+class Polygon extends ArrayDeque<R2Point> implements Figure {
     private double s, p;
 
     public Polygon(R2Point a, R2Point b, R2Point c){
