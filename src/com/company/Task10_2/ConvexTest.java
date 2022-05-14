@@ -20,7 +20,7 @@ class ConvexTest {
     }
 
     static void randomTest(FileWriter fileWriter, Convex convex, ConvexFrame frame) throws IOException {
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 10000000; i++) {
             int x = (int) (Math.random() * 700) - 350;
             int y = (int) (Math.random() * 700) - 350;
             convex.addP(new R2Point(x, y));
