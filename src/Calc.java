@@ -59,17 +59,11 @@ public class Calc extends Compf{
 
     @Override
     protected void nextOper(char c){
-//        System.out.println(s);
-//        System.out.println(this);
-//        System.out.println("" + c);
 
         if (symType(c) == SYM_RIGHT){
-//            System.out.println(1);
             if (c == ']'){
-//                System.out.println(2);
                 s.push(s.pop()*2);
             }
-//            System.out.println(3);
             return;
         }
 
@@ -89,16 +83,8 @@ public class Calc extends Compf{
                 s.push(first/second);
                 break;
             case ']':
-                s.push(first/second);
                 break;
         }
-//        System.out.println(s);
-
-//        if (peek() == '['){
-//            s.push(s.pop()*2);
-//        }
-//        System.out.println(s);
-//        System.out.println();
     }
 
     @Override
@@ -108,9 +94,9 @@ public class Calc extends Compf{
     }
 
     @Override
-    public final void compile(char[] str){
+    public final Integer compile(char[] str){
         super.compile(str);
 
-        System.out.println("" + s.peek()); //?!
+        return s.peek(); //?!
     }
 }

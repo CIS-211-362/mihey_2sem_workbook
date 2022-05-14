@@ -78,7 +78,7 @@ public class Compf extends Stack<Character> {
         nextOper(c);
     }
 
-    public void compile(char[] str){
+    public Integer compile(char[] str){
         processSymbol('(');
 
         for(int i = 0; i < str.length; i++)
@@ -87,5 +87,6 @@ public class Compf extends Stack<Character> {
         processSymbol(')');
 
         System.out.print("\n");
+        return null;
     }
 }
