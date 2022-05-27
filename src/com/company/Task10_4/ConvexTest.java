@@ -1,16 +1,15 @@
-package com.company.Task10_3;
+package com.company.Task10_4;
 
 
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Scanner;
 
 //Тест для выпуклой оболочки.
 class ConvexTest {
     public static void main(String[] args) throws IOException {
-        FileWriter fileWriter = new FileWriter("src/com/company/Task10_3/points.txt");
+        FileWriter fileWriter = new FileWriter("src/com/company/Task10_4/points.txt");
         Convex convex = new Convex();
         ConvexFrame frame = new ConvexFrame(convex);
 
@@ -55,7 +54,7 @@ class ConvexTest {
 
 
     static void fromFileTest(FileWriter fileWriter, Convex convex, ConvexFrame frame) throws IOException {
-        FileReader reader = new FileReader("src/com/company/Task10_3/input_points.txt");
+        FileReader reader = new FileReader("src/com/company/Task10_4/input_points.txt");
         Scanner input_points = new Scanner(reader);
         while (input_points.hasNext()) {
             String[] cord = input_points.nextLine().split(", ");
