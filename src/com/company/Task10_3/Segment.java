@@ -1,8 +1,4 @@
-package com.company.Task10_2;
-
-import com.company.Task10_2.Figure;
-import com.company.Task10_2.Polygon;
-import com.company.Task10_2.R2Point;
+package com.company.Task10_3;
 
 import java.util.ArrayList;
 
