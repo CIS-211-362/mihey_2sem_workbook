@@ -1,13 +1,20 @@
 package com.company;
 
 import java.awt.*;
+import java.util.Scanner;
 
 public class Cube {
     private Facet[] facets;
+    public static int c;
 
     public Cube() {
         facets = new Facet[6];
-        //Дальняя грань в плоскости xy
+
+        System.out.println("Задайте точку с, она отрицательна и не должна заходить в куб. сейчас это меньше -" + Main.k);
+        Scanner scanner = new Scanner(System.in);
+        c = -100;
+//        c = scanner.nextInt();
+
         facets[0] = new Facet(new R3Vector(0, 0, 0), new R3Vector(0, 1, 0), new R3Vector(1, 1, 0), new R3Vector(1, 0, 0));
         facets[0].setColor(Color.BLUE);
 

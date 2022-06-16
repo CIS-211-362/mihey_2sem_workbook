@@ -30,8 +30,8 @@ public class R3Vector {
     private void rotateX(double u) {
         u = Math.toRadians(u);
         double tx = x;
-        x = x*Math.cos(u)-y*Math.sin(u);
-        y= tx*Math.sin(u)+y*Math.cos(u);
+        x = tx*Math.cos(u)-y*Math.sin(u);
+        y = tx*Math.sin(u)+y*Math.cos(u);
     }
 
     private void rotateY(double u){

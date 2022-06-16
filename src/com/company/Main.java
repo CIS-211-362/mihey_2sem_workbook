@@ -4,24 +4,31 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Scanner;
 
 public class Main extends JFrame {
     int width = 800;
     int height = 800;
     CubePanel cubePanel;
+    public static int k;
 
     public Main(){
         this.setTitle("Сладкий кубик");
         this.setSize(width, height);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Введите расширение куба");
+        k = 80;
+//        k = scanner.nextInt();
+
         Container pane = this.getContentPane();
         pane.setLayout(new GridLayout(2, 1));
         Cube cube = new Cube();
         cube.translate(-0.5, -0.5, -0.5);
-        cube.scale(100);
-        cube.rotate(0, 0, 0);
-        cube.rotate(45, 45, 45);
+        cube.scale(k);
+//        cube.rotate(0, 0, 0);
+//        cube.rotate(45, 45, 45);
 
         CubePanel cubePanel = new CubePanel(cube);
         this.cubePanel = cubePanel;
